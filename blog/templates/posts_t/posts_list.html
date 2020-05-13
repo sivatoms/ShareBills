@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class='container text-center'>
+    {% for p in object_list %}
+        <div class='row'>         
+            <a href="{% url 'post_detail' p.id %}" class='container post_title col-2' style="text-decoration:none;">            
+                <div class='row-1 align-items-center title'>
+                <p style='color:white;'>{{ p.post_title|truncatechars:20 }}</p>        
+                </div>                              
+            </a>                                 
+            <div class='col-10'>
+                <div class='spacer1'>
+                    <p>{{ p.post_description|truncatechars:300 }}</p>
+                </div>
+            </div>
+            <!--<div class='col-4'>
+                <p>{{ p.post_date }}</p>
+            </div>-->             
+        </div>      
+        <br>    
+    {% endfor %}  
+
+    <div class='pagination'>
+        <span class='step-links'>
+            {% if object_list.has_previous %}
+            <a href="?{{ page_request_var }}={{ object_list.previou_page_number }}{% if request.GET.q %}&q={{ reuqest.GET.q }}{% endif %}">previous</a>
+            {% endif %}
+            <span class='current'>
+                Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+            </span>
+            {% if object_list.has_next %}
+                <a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&1={{ request.GET.q }}{% endif %}">next</a>            
+            {% endif %}
+        </span>
+    </div>
+
+    </div>
+    
+{% endblock %}

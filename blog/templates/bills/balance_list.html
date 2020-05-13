@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+    
+<h2>Your Balance:</h2>
+
+{% if context %}
+
+<div class='card'>
+        <div class="card-body"> 
+            <div class='row justify-content-center'>  
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Bill Type</th>  
+                        <th scope="col">Added on</th>   
+                        <th scope="col">Due Amount</th>            
+                        <th scope="col">View</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item, val in context.items %}
+                            {% if item != 'total' %}
+                            <tr>
+                            {% for item2, val2 in val.items %} 
+                                    {% if item2 != 'transaction'%}
+                                    <td> {{ val2 }}</td> 
+                                    {% else %}
+                                    <td><a class='btn btn-outline-primary' href="{% url 'view_balance' id=val2.id %}">View</a></td>  
+                                    {% endif %}                     
+                            {% endfor %}
+                            </tr>                
+                            {% endif %} 
+                            
+                        {% endfor %}
+                        <tr>           
+                    
+                            
+                            <td></td>
+                            <td><h5>Total Due<h5></td>
+                            {% for item, val in context.items %}
+                                {% if item == 'total' %}
+                                    {% for item2, val2 in val.items %} 
+                                        <td><h5>$ {{ val2 }}</h5></td>
+                                    {% endfor %}
+                                {% endif %}  
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class='row-1 pl-3 pt-3'>    
+        <p>{{ post.post_title }}</p>
+    </div>
+    <hr>
+    <div class='row-2 pl-3 pt-3'>
+        <p>{{ post.post_description }} </p>
+    </div>
+    <br>
+    <a href="{% url 'post_edit' post.id %}" class='col-3 ml-15'><button class='btn btn-secondary' type='edit'>Edit</button></a>
+    
+{% endblock %}

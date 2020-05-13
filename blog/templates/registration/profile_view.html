@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block body %}
+  <div class='container'>
+    <h2>{{ user.get_full_name }}</h2>
+    <hr>
+        <div class="row justify-content-center">
+              <div class="col-12">
+                  <div class="card">
+                      <div class="card-body">         
+                          <div class='row'>
+                            <div class='col-4'>Username : </div>
+                            <div class='col-8'>{{ user.username }}</div>
+                          </div>
+                          <hr>
+                          <div class='row'>
+                            <div class='col-4'>First name : </div>
+                            <div class='col-8'>{{ user.first_name }}</div>
+                          </div>
+                          <hr>
+                          <div class='row'>
+                            <div class='col-4'>Last name : </div>
+                            <div class='col-8'>{{ user.last_name }}</div>
+                          </div>
+                          <hr>
+                          <div class='row'>
+                            <div class='col-4'>Email : </div>
+                            <div class='col-8'>{{ user.email }}</div>
+                          </div>
+                          <hr>
+                          <div class='row'>
+                            <div class='col-4'>Phone number : </div>
+                            <div class='col-8'>{{ user.profile.phone }}</div>
+                          </div>
+                          <hr>
+                          <div class='row'>
+                            <div class='col-4'>Birth Date : </div>
+                            <div class='col-8'>{{ user.profile.birth_date }}</div>
+                          </div>
+                          <hr>
+              
+
+                           <a class='btn btn-primary' href="{% url 'update_profile' %}">Edit profile</a>
+                       </div>
+                    </div>
+                  </div>
+      </div>
+
+  </div>
+
+{% endblock %}

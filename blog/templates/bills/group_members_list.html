@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+    <div class='container'>
+        <h4>{{ group.group_name }}</h4>
+        <hr>        
+            <div class="row justify-content-center">                
+                <div class="col-12">
+                    <h6>Members</h6>
+                    <a class='btn btn-outline-danger' href="{% url 'add_members' id=group.id %}">Add new members</a>
+                    <hr>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class='col-10'>
+                                {% if members %}            
+                                    {% for id, name in members.items %}
+                                        <div class='row'>
+                                            <div class='col-4'>
+                                                {{name}}
+                                            </div>
+                                            <div class='col-6'>                                               
+                                                <a class='btn btn-outline-danger' href="{% url 'remove_members' id=group.id %}">Remove</a>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

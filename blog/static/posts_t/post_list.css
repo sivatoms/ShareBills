@@ -1,0 +1,25 @@
+.spacer1 {
+    background-color: rgb(238, 232, 231);
+    margin-left: -15px;
+    margin-top: 8.5px;
+    border-color: black;
+    border-radius: 5px;
+    height: 80%;
+
+}
+
+.post_title{
+    height: 100px;
+    border-radius: 10px;
+    background-color: rgba(58, 98, 124, 0.582);
+}
+
+.title{
+    padding-top: 35px;
+    text-decoration: none;
+}
+
+.asteriskField{
+    display:none;
+}
+

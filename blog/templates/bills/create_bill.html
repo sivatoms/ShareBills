@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+<div class='container'>
+    <div class='row justify-content-center'>
+        <div class='card' style='width: 28rem;;margin: 0 auto;float: none; margin-bottom: 10px; /* Added */'>
+            <div class="card-body">
+              {% if messages %}
+                <ul class="messages">
+                  {% for message in messages %}
+                    <li class="{{ message.tags }}" style="color:green;">{{ message }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+                <form method='post' id='billform' user-data-url="{% url 'ajax_load_users' %}"  novalidate>
+                    {% csrf_token %}
+                    {{ form|crispy }}
+
+                    <button class='btn btn-primary'> Add bill </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+    $("#id_added_to").change(function () {
+      var url = $("#billform").attr("user-data-url");  // get the url of the `load_cities` view
+      var group_id = $(this).val();  // get the selected country ID from the HTML input
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'group': group_id      // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_added_by").html(data);  // replace the contents of the city input with the data that came from the server
+           console.log(data);
+
+        }
+      });
+
+    });
+  </script> -->
+
+
+<!--
+{% endblock %}
+
+{% comment %} <div class='container'>
+    <div class='row justify-content-center'>
+        <div class='card' style='width: 28rem;;margin: 0 auto;float: none; margin-bottom: 10px; /* Added */'>
+            <div class="card-body">
+                <form method='post'>
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class='btn btn-primary'> Add bill </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %} -->

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+    {% if message %}
+        <h5>{{ message }}</h5>
+        {% if user.is_authenticated%}
+            <a class='btn btn-outline-success' href="{% url 'balance_list' id=user.id%}">Back to Balances</a>
+        {% endif %}
+    {% else %}
+        <a class="btn btn-outline-primary" href="{% url 'balance_list' id=user.id%}">Back to balances</a>
+    <hr>
+        <form method='post'>
+            {% csrf_token %}
+            <p> Are you sure want to delete</p>
+            <button type='submit' name='delete' class='btn btn-outline-danger'>Confirm Delete</button>
+           
+        </form>
+    
+    {% endif %}
+    
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class='container'>
+        <div class='card' style="width: 18rem;margin: 0 auto;float: none; margin-bottom: 10px; /* Added */">
+            <div class="card-body">
+                <h5 class='text-success'>You paid : $ {{ context.paid_amt }}</h5>
+                <h5 class='text-danger'>You owe : $ {{ context.due_amt }}</h5>
+            </div>
+        </div>
+        <br>
+        <div class='row justify-content-center'>
+            <a class='btn btn-primary text-light btn-lg' href="{% url 'group_list_bill' id=user.id %}">+ Add new bill</a>
+        </div>
+        <br>
+        <div class='row justify-content-center'>
+            <a class='btn btn-success text-light btn-lg' href="{% url 'balance_list' id=user.id %}">View Transactions </a>
+        </div>
+         <br>
+        <div class='row justify-content-center'>
+            <a class='btn btn-info text-light btn-lg' href="{% url 'group_list' id=user.id %}">Groups</a>
+        </div>
+    </div>
+{% endblock %}
